@@ -130,9 +130,10 @@ export const TableProducts = ({ productToSell, setProductToSell }) => {
                   <p>
                     {saleData[product.id_producto]?.desc > 0
                       ? (
-                          product.precio / saleData[product.id_producto]?.desc
+                          product.precio *
+                          (1 - saleData[product.id_producto]?.desc / 100)
                         ).toFixed(2)
-                      : product.precio}
+                      : product.precio.toFixed(2)}
                   </p>
                 </td>
                 <td>
@@ -147,12 +148,17 @@ export const TableProducts = ({ productToSell, setProductToSell }) => {
             ))}
           </tbody>
         </table>
-        {productToSell && productToSell.length > 0 && (
+        {productToSell.length > 0 && (
           <div className="button-sendSale">
             <button onClick={sendDataSaleInfo} className="button-pay">
               Cobrar
             </button>
-            <button className="button-empty" onClick={() => {setProductToSell([])}}>Vaciar lista</button>
+            <button
+              className="button-empty"
+              onClick={() => setProductToSell([])}
+            >
+              Vaciar lista
+            </button>
           </div>
         )}
       </div>

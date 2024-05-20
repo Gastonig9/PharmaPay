@@ -1,4 +1,3 @@
-
 import { createSlice } from "@reduxjs/toolkit";
 
 export const windowSlice = createSlice({
@@ -6,11 +5,11 @@ export const windowSlice = createSlice({
   initialState: {
     openProductWindow: false,
     openCreateProductWindow: false,
+    openCloseSalesWindow: false,
   },
   reducers: {
     setOpenProductWindow: (state) => {
-      console.log(state.openCreateProductWindow)
-      state.openProductWindow = false;
+      state.openProductWindow = true;
     },
     setCloseProductWindow: (state) => {
       state.openProductWindow = false;
@@ -21,9 +20,22 @@ export const windowSlice = createSlice({
     setCloseCreateProductWindow: (state) => {
       state.openCreateProductWindow = false;
     },
+    setOpenSalesWindow: (state) => {
+      state.openCloseSalesWindow = true;
+    },
+    setCloseSalesWindow: (state) => {
+      state.openCloseSalesWindow = false;
+    },
   },
 });
 
-export const { setOpenProductWindow, setCloseProductWindow, setOpenCreateProductWindow, setCloseCreateProductWindow } = windowSlice.actions;
+export const {
+  setOpenProductWindow,
+  setCloseProductWindow,
+  setOpenCreateProductWindow,
+  setCloseCreateProductWindow,
+  setOpenSalesWindow,
+  setCloseSalesWindow,
+} = windowSlice.actions;
 
 export default windowSlice.reducer;

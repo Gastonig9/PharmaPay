@@ -40,17 +40,14 @@ export const Ticket = ({
                 opacity=".8"
               />
             </svg>
-            <span className="ticket__co-name">Ticket</span>
+            <span className="ticket__co-name">PharmaPay</span>
             <span className="u-upper ticket__co-subname">
               Informacion sobre tu compra
             </span>
           </div>
         </div>
         <div className="ticket__body">
-          <p className="ticket__route">Winter Wonderland</p>
-          <p className="ticket__description">
-            A four-hour tour of the Strait of Garamond
-          </p>
+          <p className="ticket__route">Ticket</p>
           <div className="ticket__timing">
             <p>
               <span className="u-upper ticket__small-label">Fecha</span>

@@ -11,6 +11,7 @@ export const productSlice = createSlice({
       state.products = action.payload;
     },
     setProductToSell: (state, action) => {
+      console.log(state.productToSell)
       state.productToSell = action.payload;
     },
     addProductToSell: (state, action) => {
