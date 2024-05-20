@@ -11,16 +11,15 @@ export const ProductWindow = ({
   close,
 }) => {
   const [key, setKey] = useState("");
-  console.log(products);
 
   useEffect(() => {
-    const verifyProductsLength = async () => {
+    const fetchProducts = async () => {
       const allProducts = await new ProductService().getAllProducts();
       if (key === "") {
         setProducts(allProducts);
       }
     };
-    verifyProductsLength();
+    fetchProducts();
   }, [setProducts, key]);
 
   const searchByKey = async (searchKey) => {
@@ -29,14 +28,8 @@ export const ProductWindow = ({
         const allProducts = await new ProductService().getAllProducts();
         setProducts(allProducts);
       } else {
-        const productService = await new ProductService().seachProduct(
-          searchKey
-        );
-        if (Array.isArray(productService)) {
-          setProducts(productService);
-        } else {
-          setProducts([]);
-        }
+        const productService = await new ProductService().seachProduct(searchKey);
+        setProducts(Array.isArray(productService) ? productService : []);
       }
     } catch (error) {
       console.log(error);
@@ -52,7 +45,7 @@ export const ProductWindow = ({
           <input
             type="text"
             className="form-control"
-            placeholder="Buscar en catalogo"
+            placeholder="Buscar en catálogo"
             aria-label="Search"
             aria-describedby="basic-addon1"
             value={key}
@@ -63,7 +56,6 @@ export const ProductWindow = ({
             }}
           />
         </div>
-
         <div className="scroll-product">
           <table className="table">
             <thead>
@@ -72,33 +64,26 @@ export const ProductWindow = ({
                 <th>Nombre del Producto</th>
                 <th>Precio</th>
                 <th>Laboratorio</th>
-                <th>Presentacion</th>
-                <th>Categoria</th>
-                <th>Descripcion</th>
+                <th>Presentación</th>
+                <th>Categoría</th>
+                <th>Descripción</th>
               </tr>
             </thead>
             <tbody>
-              {products &&
-                products.map((product) => (
-                  <tr
-                    key={product.id_producto}
-                    onClick={() => addProductToSell(product)}
-                  >
-                    <td className="product-hover">{product.id_producto}</td>
-                    <td className="product-hover">{product.nombre_producto}</td>
-                    <td className="product-hover">{product.precio}</td>
-                    <td className="product-hover">{product.laboratorio}</td>
-                    <td className="product-hover">{product.presentacion}</td>
-                    <td className="product-hover">{product.categoria}</td>
-                    <td className="product-hover descripcion-scroll">
-                      {product.descripcion_producto}
-                    </td>
-                  </tr>
-                ))}
+              {products.map((product) => (
+                <tr key={product.id_producto} onClick={() => addProductToSell(product)}>
+                  <td className="product-hover">{product.id_producto}</td>
+                  <td className="product-hover">{product.nombre_producto}</td>
+                  <td className="product-hover">{product.precio}</td>
+                  <td className="product-hover">{product.laboratorio}</td>
+                  <td className="product-hover">{product.presentacion}</td>
+                  <td className="product-hover">{product.categoria}</td>
+                  <td className="product-hover descripcion-scroll">{product.descripcion_producto}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
-
         <ButtonClose close={close} />
       </div>
     </>
