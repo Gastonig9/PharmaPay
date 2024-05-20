@@ -1,0 +1,12 @@
+.window-create-product {
+  position: fixed;
+  width: 50%;
+  height: 650px;
+  background-color: #f1f5f2;
+  box-shadow: 10px 10px 20px rgba(194, 168, 120, 0.5);
+  top: 100px;
+  left: 400px;
+  border: 2px solid gray;
+  color: #6e633d;
+  overflow-y: scroll;
+  }

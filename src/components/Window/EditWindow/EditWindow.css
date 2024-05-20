@@ -1,0 +1,23 @@
+.edit-window-contain {
+    position: fixed;
+    width: 80%;
+    height: auto;
+    background-color: #F1F5F2;
+    box-shadow: 10px 10px 20px rgba(194, 168, 120, 0.5);
+    top: 200px;
+    left: 150px;
+    padding: 50px 50px;
+}
+
+.edit-window-contain .options-edit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #6E633D;
+}
+
+.edit-window-contain .options-edit .btn-apply-edit {
+    margin-right: 20px;
+    background-color: #C2A878;
+    color:  #F1F5F2;
+}

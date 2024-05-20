@@ -1,0 +1,52 @@
+.window-close-sale {
+  position: fixed;
+  width: 100%;
+  height: 650px;
+  background-color: #f1f5f2;
+  box-shadow: 10px 10px 20px rgba(194, 168, 120, 0.5);
+  top: 100px;
+  left: 0;
+  border: 2px solid gray;
+  color: #6e633d;
+  overflow-y: scroll;
+}
+
+.window-close-sale .close-sales-info {
+    display: flex;
+    justify-content: space-around;
+}
+
+.window-close-sale .close-sales-info .inputs-date, .inputs-hour {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.window-close-sale .close-sales-info .inputs-date input {
+    width: 60%;
+    height: 40px;
+    padding: 15px;
+    font-size: 17px;
+}
+
+.window-close-sale .close-sales-info .inputs-hour input {
+    width: 40%;
+    height: 40px;
+    padding: 15px;
+    font-size: 17px;
+}
+
+.window-close-sale .show-sales {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.window-close-sale .show-sales button {
+    width: 30%;
+    background-color: #c2a878;
+    color: #f1f5f2;
+}

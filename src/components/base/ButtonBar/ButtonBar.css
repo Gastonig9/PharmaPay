@@ -1,0 +1,7 @@
+.button-action {
+    background-color: #F1F5F2;
+    border-bottom: 2px solid #C2A878;
+    border-right: 2px solid #C2A878;
+    padding: 10px 30px;
+    box-shadow: 10px 10px 20px rgba(194, 168, 120, 0.5); 
+}

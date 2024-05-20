@@ -1,0 +1,26 @@
+.window-product {
+    position: fixed;
+    width: 50%;
+    height: auto;
+    background-color: #F1F5F2;
+    box-shadow: 10px 10px 20px rgba(194, 168, 120, 0.5);
+    top: 100px;
+    left: 400px;
+    border: 2px solid gray;
+    color: #6E633D;
+}
+
+.scroll-product {
+    height: 400px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+
+.product-hover{
+    padding: 10px 20px;
+    font-size: 17px;
+}
+.product-hover:hover{
+    cursor: pointer;
+    background-color: gainsboro !important;
+}
