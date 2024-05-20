@@ -44,6 +44,12 @@ export const TableProducts = ({ productToSell, setProductToSell }) => {
       const product = productToSell.find(
         (item) => item.id_producto === parseInt(productId)
       );
+
+      if (!product) {
+        console.error(`Product with id ${productId} not found in productToSell`);
+        continue;
+      }
+
       const { cantidad, desc } = saleData[productId];
       const productPrice = product.precio * cantidad;
       const discountedPrice = productPrice - (productPrice * desc) / 100;
@@ -67,7 +73,7 @@ export const TableProducts = ({ productToSell, setProductToSell }) => {
     try {
       const saleService = await new SaleService().createSale(newSale);
       setProductToSell([]);
-      console.log("response" + saleService);
+      console.log("response" + saleService.ticket);
       setticket(saleService);
       setshowTicket(true);
     } catch (error) {
@@ -122,10 +128,8 @@ export const TableProducts = ({ productToSell, setProductToSell }) => {
                 <td>{product.laboratorio}</td>
                 <td>${product.precio}</td>
                 <td>{saleData[product.id_producto]?.cantidad || 0}</td>
-                <td>{saleData[product.id_producto]?.desc.toFixed(2) || 0}</td>
-                <td>
-                  {saleData[product.id_producto]?.tipo_de_pago || "efectivo"}
-                </td>
+                <td>{saleData[product.id_producto]?.desc?.toFixed(2) || 0}</td>
+                <td>{saleData[product.id_producto]?.tipo_de_pago || "efectivo"}</td>
                 <td>
                   <p>
                     {saleData[product.id_producto]?.desc > 0
