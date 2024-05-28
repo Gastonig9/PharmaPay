@@ -62,5 +62,16 @@
     "updating_product": "Actualizando producto...",
     "new_product_added": "Se agregó un nuevo producto",
     "no_product_selected": "Seleccione un producto"
+  },
+  "CloseSalesWindow": {
+    "title": "Cierre de ventas",
+    "to": "Hasta",
+    "show_sales": "Mostrar",
+    "no_sales": "No existen ventas en el día/horario especificado"
+  },
+  "EditWindow": {
+    "labels": ["Cantidad", "Desc", "Metodo de pago"],
+    "selects": ["Efectivo", "Mercado pago", "Debito"],
+    "btn_apply": "Aplicar"
   }
 }

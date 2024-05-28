@@ -2,8 +2,14 @@
 import { useEffect, useRef, useState } from "react";
 import { BackgroundTransparent } from "../../base/BackgroundTransparent/BackgroundTransparent";
 import "./EditWindow.css";
+import { useTranslation } from "react-i18next";
 
-export const EditWindow = ({ productEdit, applyDiscount, setSelectedProductId }) => {
+export const EditWindow = ({
+  productEdit,
+  applyDiscount,
+  setSelectedProductId,
+}) => {
+  const { t } = useTranslation();
   const [descEdit, setDescEdit] = useState(1);
   const [typeOfPay, settypeOfPay] = useState("efectivo");
   const [quantity, setQuantity] = useState(1);
@@ -22,12 +28,20 @@ export const EditWindow = ({ productEdit, applyDiscount, setSelectedProductId })
   };
 
   const handleApplyDiscount = () => {
-    applyDiscount(productEdit.id,parseInt(descEdit), typeOfPay, parseInt(quantity));
+    applyDiscount(
+      productEdit.id,
+      parseInt(descEdit),
+      typeOfPay,
+      parseInt(quantity)
+    );
   };
 
   const handleClickOutside = (event) => {
-    if (editWindowRef.current && !editWindowRef.current.contains(event.target)) {
-      setSelectedProductId(null)
+    if (
+      editWindowRef.current &&
+      !editWindowRef.current.contains(event.target)
+    ) {
+      setSelectedProductId(null);
     }
   };
 
@@ -40,12 +54,12 @@ export const EditWindow = ({ productEdit, applyDiscount, setSelectedProductId })
 
   return (
     <>
-      <BackgroundTransparent/>
+      <BackgroundTransparent />
       <div className="edit-window-contain" ref={editWindowRef}>
         <div className="options-edit">
           <h6>{productEdit.nombre_producto}</h6>
           <div className="d-flex gap-3 align-items-center">
-            <label htmlFor="">Cantidad</label>
+            <label htmlFor="quantity">{t("EditWindow.labels.0")}</label>
             <input
               type="number"
               value={quantity}
@@ -54,7 +68,7 @@ export const EditWindow = ({ productEdit, applyDiscount, setSelectedProductId })
             />
           </div>
           <div className="d-flex gap-3 align-items-center">
-            <label htmlFor="">Desc</label>
+            <label htmlFor="discount">{t("EditWindow.labels.1")}</label>
             <input
               type="number"
               value={descEdit}
@@ -63,15 +77,15 @@ export const EditWindow = ({ productEdit, applyDiscount, setSelectedProductId })
             />
           </div>
           <div className="d-flex gap-3 align-items-center">
-            <label htmlFor="">Metodo de pago</label>
+          <label htmlFor="discount">{t("EditWindow.labels.2")}</label>
             <select name="" onChange={handleTypeChange}>
-              <option value="Efectivo">Efectivo</option>
-              <option value="Mercado pago">Mercado pago</option>
-              <option value="Debito">Debito</option>
+              <option value="Efectivo">{t("EditWindow.selects.0")}</option>
+              <option value="Mercado pago">{t("EditWindow.selects.1")}</option>
+              <option value="Debito">{t("EditWindow.selects.2")}</option>
             </select>
           </div>
           <button className="btn-apply-edit" onClick={handleApplyDiscount}>
-            Aplicar
+            {t("EditWindow.btn_apply")}
           </button>
         </div>
       </div>

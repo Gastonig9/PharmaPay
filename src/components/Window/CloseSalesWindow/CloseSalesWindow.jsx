@@ -4,8 +4,10 @@ import { SaleService } from "../../../apiService/SaleService";
 import { TableSales } from "../../Tables/TableSales/TableSales";
 import { ButtonClose, BackgroundTransparent } from "../../base";
 import "./CloseSalesWindow.css";
+import { useTranslation } from "react-i18next";
 
 export const CloseSalesWindow = ({ close }) => {
+  const { t } = useTranslation()
   const [closeSalesData, setCloseSalesData] = useState({
     fromDate: "",
     toDate: "",
@@ -26,10 +28,9 @@ export const CloseSalesWindow = ({ close }) => {
   const handleCloseSalesSubmit = async () => {
     const { fromDate, toDate, fromTime, toTime } = closeSalesData;
 
-    // Verifica si las fechas y horas fueron proporcionadas
     if (!fromDate || !toDate || !fromTime || !toTime) {
       setError("Fecha u horario ingresado no proporcionados o invalidos");
-      setSales([]); // Asegúrate de limpiar las ventas anteriores
+      setSales([]);
       return;
     }
 
@@ -44,15 +45,15 @@ export const CloseSalesWindow = ({ close }) => {
     try {
       const sales = await new SaleService().getDaySales(requestData);
       if (sales.length === 0) {
-        setError(null); // No hay error, pero no hay ventas
-        setSales([]); // No hay ventas en el rango especificado
+        setError(null);
+        setSales([]);
       } else {
-        setError(null); // No hay error
-        setSales(sales); // Hay ventas en el rango especificado
+        setError(null);
+        setSales(sales); 
       }
     } catch (error) {
       setError("Ocurrió un error al obtener las ventas.");
-      setSales([]); // Asegúrate de limpiar las ventas anteriores
+      setSales([]);
     }
   };
 
@@ -60,11 +61,11 @@ export const CloseSalesWindow = ({ close }) => {
     <>
       <BackgroundTransparent />
       <div className="window-close-sale d-flex flex-column gap-4 p-3">
-        <h1>Cierre de ventas</h1>
+        <h1>{t('CloseSalesWindow.title')}</h1>
         <div className="close-sales-info">
           <div className="inputs-date">
             <input type="date" name="fromDate" onChange={handleInputChange} />
-            <p>Hasta</p>
+            <p>{t('CloseSalesWindow.to')}</p>
             <input type="date" name="toDate" onChange={handleInputChange} />
           </div>
           <div className="inputs-hour">
@@ -74,7 +75,7 @@ export const CloseSalesWindow = ({ close }) => {
               placeholder="00:00"
               onChange={handleInputChange}
             />
-            <p>Hasta</p>
+            <p>{t('CloseSalesWindow.to')}</p>
             <input
               type="time"
               name="toTime"
@@ -84,7 +85,7 @@ export const CloseSalesWindow = ({ close }) => {
           </div>
         </div>
         <div onClick={handleCloseSalesSubmit} className="show-sales">
-          <button>Mostrar</button>
+          <button>{t('CloseSalesWindow.show_sales')}</button>
         </div>
 
         {error ? (
@@ -95,7 +96,7 @@ export const CloseSalesWindow = ({ close }) => {
           <TableSales salesToClose={sales} />
         ) : (
           <div className="no-sales">
-            <h4>No existen ventas en el día/horario especificado</h4>
+            <h4>{t('CloseSalesWindow.no_sales')}</h4>
           </div>
         )}
 
