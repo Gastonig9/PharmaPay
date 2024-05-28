@@ -36,29 +36,38 @@ export const TableProducts = ({ productToSell, setProductToSell }) => {
   };
 
   const sendDataSaleInfo = async () => {
-    let descuentoFinal = 0;
-    let cantidadFinal = 0;
-    let precioFinal = 0;
-    let tipoDePagoFinal = "";
+    let finalDiscount = 0;
+    let finalQuantity = 0;
+    let finalPrice = 0;
+    let insufficientStock = false;
+    let finalPayment = "";
 
     productToSell.forEach((product) => {
       if (!product.descuento) product.descuento = 0;
       if (!product.cantidad) product.cantidad = 1;
-      descuentoFinal += product.descuento;
-      cantidadFinal += product.cantidad;
-      precioFinal +=
+      finalDiscount += product.descuento;
+      finalQuantity += product.cantidad;
+      finalPrice +=
         product.precio * product.cantidad -
         (product.precio * product.cantidad * product.descuento) / 100;
 
-      tipoDePagoFinal = product.tipo_de_pago || "efectivo";
+        finalPayment = product.tipo_de_pago || "efectivo";
+      if(product.stock < product.cantidad){
+        insufficientStock = true
+      } 
     });
 
+    if(insufficientStock) {
+      toast.error("Hay uno o mas productos sin stock suficiente en relacion a la cantidad ingresada")
+      return;
+    }
+
     const newSale = {
-      cantidad: cantidadFinal,
-      tipo_de_pago: tipoDePagoFinal,
+      cantidad: finalQuantity,
+      tipo_de_pago: finalPayment,
       Ticket: productToSell,
-      descuento: descuentoFinal,
-      precio_final: precioFinal,
+      descuento: finalDiscount,
+      precio_final: finalPrice,
       horario_de_venta: new Date(),
     };
     const response = await toast.promise(
@@ -111,6 +120,7 @@ export const TableProducts = ({ productToSell, setProductToSell }) => {
               <th>{t("TableProducts.quantity")}</th>
               <th>{t("TableProducts.discount")}</th>
               <th>{t("TableProducts.payment_type")}</th>
+              <th>Stock</th>
               <th>{t("TableProducts.total")}</th>
               <th>{t("TableProducts.edit")}</th>
             </tr>
@@ -125,6 +135,7 @@ export const TableProducts = ({ productToSell, setProductToSell }) => {
                 <td>{product.cantidad || 1}</td>
                 <td>{product.descuento || 0}%</td>
                 <td>{product.tipo_de_pago || "efectivo"}</td>
+                <td>{product.stock}</td>
                 <td>
                   <p>
                     {product.descuento > 0
