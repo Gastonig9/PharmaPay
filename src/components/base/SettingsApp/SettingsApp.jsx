@@ -7,9 +7,11 @@ import spainLogo from "../../../assets/logoSpain.png";
 export const SettingsApp = () => {
   const { i18n } = useTranslation();
   const [showSettings, setShowSettings] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
+    setSelectedLanguage(lng);
   };
 
   return (
@@ -23,10 +25,16 @@ export const SettingsApp = () => {
         <i className={`fa-solid fa-gears ${showSettings ? "rotate-icon" : ""}`}></i>
       </div>
       <div className={`settings-contain ${showSettings ? "show" : ""}`}>
-        <div className="spanish" onClick={() => changeLanguage('es')}>
+        <div
+          className={`spanish ${selectedLanguage === 'es' ? 'selected' : ''}`}
+          onClick={() => changeLanguage('es')}
+        >
           <img src={spainLogo} alt="Spanish" />
         </div>
-        <div className="english" onClick={() => changeLanguage('en')}>
+        <div
+          className={`english ${selectedLanguage === 'en' ? 'selected' : ''}`}
+          onClick={() => changeLanguage('en')}
+        >
           <img src={englishLogo} alt="English" />
         </div>
       </div>

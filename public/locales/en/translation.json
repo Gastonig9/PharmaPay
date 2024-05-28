@@ -35,7 +35,7 @@
     "payment_type": "Payment Type",
     "total": "Total",
     "edit": "Edit",
-    "send_sale": "Charge",
+    "send_sale": "Pay",
     "empty_list": "Empty list"
   },
   "CreatePForm": {
@@ -62,5 +62,17 @@
     "updating_product": "Updating product...",
     "new_product_added": "A new product has been added",
     "no_product_selected": "Select a product"
+  },
+  "CloseSalesWindow": {
+    "title": "Closing sales",
+    "to": "To",
+    "show_sales": "Show",
+    "no_sales": "There are no sales on the specified day/time"
+  },
+  "EditWindow": {
+    "labels": ["Quantity", "Disc", "Payment method"],
+    "selects": ["Cash", "Mercado pago", "Debit"],
+    "btn_apply": "Apply"
   }
+
 }

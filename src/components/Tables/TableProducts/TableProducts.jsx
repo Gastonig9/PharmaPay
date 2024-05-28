@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 
 export const TableProducts = ({ productToSell, setProductToSell }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [ticket, setticket] = useState({});
   const [showTicket, setshowTicket] = useState(false);
@@ -36,43 +36,43 @@ export const TableProducts = ({ productToSell, setProductToSell }) => {
   };
 
   const sendDataSaleInfo = async () => {
-      let descuentoFinal = 0;
-      let cantidadFinal = 0;
-      let precioFinal = 0;
-      let tipoDePagoFinal = '';
+    let descuentoFinal = 0;
+    let cantidadFinal = 0;
+    let precioFinal = 0;
+    let tipoDePagoFinal = "";
 
-      productToSell.forEach((product) => {
-        if(!product.descuento) product.descuento = 0;
-        if(!product.cantidad) product.cantidad = 1;
-        descuentoFinal += product.descuento;
-        cantidadFinal += product.cantidad;
-        precioFinal +=
-          product.precio * product.cantidad -
-          (product.precio * product.cantidad * product.descuento) / 100;
+    productToSell.forEach((product) => {
+      if (!product.descuento) product.descuento = 0;
+      if (!product.cantidad) product.cantidad = 1;
+      descuentoFinal += product.descuento;
+      cantidadFinal += product.cantidad;
+      precioFinal +=
+        product.precio * product.cantidad -
+        (product.precio * product.cantidad * product.descuento) / 100;
 
-        tipoDePagoFinal = product.tipo_de_pago || 'efectivo';
-      });
+      tipoDePagoFinal = product.tipo_de_pago || "efectivo";
+    });
 
-      const newSale = {
-        cantidad: cantidadFinal,
-        tipo_de_pago: tipoDePagoFinal,
-        Ticket: productToSell,
-        descuento: descuentoFinal,
-        precio_final: precioFinal,
-        horario_de_venta: new Date()
+    const newSale = {
+      cantidad: cantidadFinal,
+      tipo_de_pago: tipoDePagoFinal,
+      Ticket: productToSell,
+      descuento: descuentoFinal,
+      precio_final: precioFinal,
+      horario_de_venta: new Date(),
+    };
+    const response = await toast.promise(
+      new SaleService().createSale(newSale),
+      {
+        loading: "Espere un momento...",
+        success: "Venta creada correctamente",
+        error: (err) => `Ocurrió un error: ${err}`,
       }
-      const response = await toast.promise(
-        new SaleService().createSale(newSale),
-        {
-          loading: 'Espere un momento...',
-          success: 'Venta creada correctamente',
-          error: (err) => `Ocurrió un error: ${err}`,
-        }
-      );
+    );
 
-      setticket(response)
-      setshowTicket(true)
-      setProductToSell([])
+    setticket(response);
+    setshowTicket(true);
+    setProductToSell([]);
   };
 
   return (
@@ -103,16 +103,16 @@ export const TableProducts = ({ productToSell, setProductToSell }) => {
       <div className="table-contain">
         <table className="table">
           <thead>
-          <tr>
-              <th>{t('TableProducts.code')}</th>
-              <th>{t('TableProducts.product_name')}</th>
-              <th>{t('TableProducts.laboratory')}</th>
-              <th>{t('TableProducts.price')}</th>
-              <th>{t('TableProducts.quantity')}</th>
-              <th>{t('TableProducts.discount')}</th>
-              <th>{t('TableProducts.payment_type')}</th>
-              <th>{t('TableProducts.total')}</th>
-              <th>{t('TableProducts.edit')}</th>
+            <tr>
+              <th>{t("TableProducts.code")}</th>
+              <th>{t("TableProducts.product_name")}</th>
+              <th>{t("TableProducts.laboratory")}</th>
+              <th>{t("TableProducts.price")}</th>
+              <th>{t("TableProducts.quantity")}</th>
+              <th>{t("TableProducts.discount")}</th>
+              <th>{t("TableProducts.payment_type")}</th>
+              <th>{t("TableProducts.total")}</th>
+              <th>{t("TableProducts.edit")}</th>
             </tr>
           </thead>
           <tbody>
@@ -124,15 +124,22 @@ export const TableProducts = ({ productToSell, setProductToSell }) => {
                 <td>${product.precio}</td>
                 <td>{product.cantidad || 1}</td>
                 <td>{product.descuento || 0}%</td>
-                <td>
-                  {product.tipo_de_pago|| "efectivo"}
-                </td>
+                <td>{product.tipo_de_pago || "efectivo"}</td>
                 <td>
                   <p>
-                    {product.descuento > 0 
-                      ?  `$${(product.precio * product.cantidad).toFixed(2) - ((product.precio * product.cantidad) * product.descuento / 100).toFixed(2)}`
-                      :  product.cantidad ? `$${(product.precio * product.cantidad).toFixed(2)}` 
-                      :  `$${product.precio}`}
+                    {product.descuento > 0
+                      ? `$${
+                          (product.precio * product.cantidad).toFixed(2) -
+                          (
+                            (product.precio *
+                              product.cantidad *
+                              product.descuento) /
+                            100
+                          ).toFixed(2)
+                        }`
+                      : product.cantidad
+                      ? `$${(product.precio * product.cantidad).toFixed(2)}`
+                      : `$${product.precio}`}
                   </p>
                 </td>
                 <td>
@@ -140,7 +147,7 @@ export const TableProducts = ({ productToSell, setProductToSell }) => {
                     onClick={() => openEditWindow(product)}
                     className="btn-edit"
                   >
-                    Editar
+                    {t("TableProducts.edit")}
                   </button>
                 </td>
               </tr>
@@ -150,7 +157,7 @@ export const TableProducts = ({ productToSell, setProductToSell }) => {
         {productToSell && productToSell.length > 0 && (
           <div className="button-sendSale">
             <button onClick={sendDataSaleInfo} className="button-pay">
-              Cobrar
+              {t("TableProducts.send_sale")}
             </button>
             <button
               className="button-empty"
@@ -158,7 +165,7 @@ export const TableProducts = ({ productToSell, setProductToSell }) => {
                 setProductToSell([]);
               }}
             >
-              Vaciar lista
+              {t("TableProducts.empty_list")}
             </button>
           </div>
         )}
