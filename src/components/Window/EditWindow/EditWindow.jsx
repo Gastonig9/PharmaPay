@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BackgroundTransparent } from "../../base/BackgroundTransparent/BackgroundTransparent";
 import "./EditWindow.css";
 
-export const EditWindow = ({ productEdit, applyDiscount }) => {
-  const [descEdit, setDescEdit] = useState(productEdit.desc);
-  const [typeOfPay, settypeOfPay] = useState("");
-  const [quantity, setQuantity] = useState(0);
+export const EditWindow = ({ productEdit, applyDiscount, setSelectedProductId }) => {
+  const [descEdit, setDescEdit] = useState(1);
+  const [typeOfPay, settypeOfPay] = useState("efectivo");
+  const [quantity, setQuantity] = useState(1);
+  const editWindowRef = useRef(null);
 
   const handleDescChange = (event) => {
     setDescEdit(event.target.value);
@@ -21,18 +22,26 @@ export const EditWindow = ({ productEdit, applyDiscount }) => {
   };
 
   const handleApplyDiscount = () => {
-    applyDiscount(
-      productEdit.id_producto,
-      parseInt(descEdit),
-      typeOfPay,
-      quantity
-    );
+    applyDiscount(productEdit.id,parseInt(descEdit), typeOfPay, parseInt(quantity));
   };
+
+  const handleClickOutside = (event) => {
+    if (editWindowRef.current && !editWindowRef.current.contains(event.target)) {
+      setSelectedProductId(null)
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
       <BackgroundTransparent/>
-      <div className="edit-window-contain">
+      <div className="edit-window-contain" ref={editWindowRef}>
         <div className="options-edit">
           <h6>{productEdit.nombre_producto}</h6>
           <div className="d-flex gap-3 align-items-center">
@@ -41,7 +50,7 @@ export const EditWindow = ({ productEdit, applyDiscount }) => {
               type="number"
               value={quantity}
               onChange={handleQuantityChange}
-              min={0}
+              min={1}
             />
           </div>
           <div className="d-flex gap-3 align-items-center">

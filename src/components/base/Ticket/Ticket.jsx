@@ -73,7 +73,7 @@ export const Ticket = ({
               {ticketProducts &&
                 ticketProducts.map((ticketP, index) => (
                   <>
-                    <div className="t-card">
+                    <div key={index} className="t-card">
                       <p>{index}</p>
                       <p>{ticketP.nombre_producto} ${ticketP.precio}</p>
                     </div>

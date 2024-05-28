@@ -64,3 +64,17 @@ table thead th {
     align-items: center;
     color: #e6514c;
 }
+
+/* button close sales */
+
+.table-close-sales-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.table-close-sales-button button {
+    width: 40%;
+    background-color: #c2a878;
+    color: #f1f5f2;
+}

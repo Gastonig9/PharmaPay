@@ -12,6 +12,12 @@ export class ProductService {
     }
   }
 
+  async getProductById(id) {
+    const response = await fetch(`https://localhost:7184/api/product/${id}`);
+    const data = await response.json();
+    return data;
+  }
+
   async seachProduct(key) {
     try {
       const response = await fetch(

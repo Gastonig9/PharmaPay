@@ -42,11 +42,11 @@
 .window-close-sale .show-sales {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: end;
 }
 
 .window-close-sale .show-sales button {
-    width: 30%;
+    width: 10%;
     background-color: #c2a878;
     color: #f1f5f2;
 }

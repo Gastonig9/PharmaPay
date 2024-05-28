@@ -1,25 +1,22 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ProductService } from "../../../apiService/ProductService";
 import { BackgroundTransparent, ButtonClose } from "../../base";
 import "./ProductWindow.css";
 
-export const ProductWindow = ({
-  products,
-  setProducts,
-  addProductToSell,
-  close,
-}) => {
+export const ProductWindow = ({ products, setProducts, addProductToSell, close }) => {
   const [key, setKey] = useState("");
+  const { t } = useTranslation();
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const verifyProductsLength = async () => {
       const allProducts = await new ProductService().getAllProducts();
       if (key === "") {
         setProducts(allProducts);
       }
     };
-    fetchProducts();
+    verifyProductsLength();
   }, [setProducts, key]);
 
   const searchByKey = async (searchKey) => {
@@ -29,7 +26,11 @@ export const ProductWindow = ({
         setProducts(allProducts);
       } else {
         const productService = await new ProductService().seachProduct(searchKey);
-        setProducts(Array.isArray(productService) ? productService : []);
+        if (Array.isArray(productService)) {
+          setProducts(productService);
+        } else {
+          setProducts([]);
+        }
       }
     } catch (error) {
       console.log(error);
@@ -40,12 +41,12 @@ export const ProductWindow = ({
     <>
       <BackgroundTransparent />
       <div className="window-product d-flex flex-column gap-4 p-3">
-        <h1>Productos</h1>
+        <h1>{t('ProductWindow.title')}</h1>
         <div className="input-group mb-3">
           <input
             type="text"
             className="form-control"
-            placeholder="Buscar en catálogo"
+            placeholder={t('ProductWindow.search_placeholder')}
             aria-label="Search"
             aria-describedby="basic-addon1"
             value={key}
@@ -60,27 +61,28 @@ export const ProductWindow = ({
           <table className="table">
             <thead>
               <tr>
-                <th>Codigo</th>
-                <th>Nombre del Producto</th>
-                <th>Precio</th>
-                <th>Laboratorio</th>
-                <th>Presentación</th>
-                <th>Categoría</th>
-                <th>Descripción</th>
+                <th>{t('ProductWindow.code')}</th>
+                <th>{t('ProductWindow.product_name')}</th>
+                <th>{t('ProductWindow.price')}</th>
+                <th>{t('ProductWindow.laboratory')}</th>
+                <th>{t('ProductWindow.presentation')}</th>
+                <th>{t('ProductWindow.category')}</th>
+                <th>{t('ProductWindow.description')}</th>
               </tr>
             </thead>
             <tbody>
-              {products.map((product) => (
-                <tr key={product.id_producto} onClick={() => addProductToSell(product)}>
-                  <td className="product-hover">{product.id_producto}</td>
-                  <td className="product-hover">{product.nombre_producto}</td>
-                  <td className="product-hover">{product.precio}</td>
-                  <td className="product-hover">{product.laboratorio}</td>
-                  <td className="product-hover">{product.presentacion}</td>
-                  <td className="product-hover">{product.categoria}</td>
-                  <td className="product-hover descripcion-scroll">{product.descripcion_producto}</td>
-                </tr>
-              ))}
+              {products &&
+                products.map((product) => (
+                  <tr key={product.id_producto} onClick={() => addProductToSell(product)}>
+                    <td className="product-hover">{product.id}</td>
+                    <td className="product-hover">{product.nombre_producto}</td>
+                    <td className="product-hover">{product.precio}</td>
+                    <td className="product-hover">{product.laboratorio}</td>
+                    <td className="product-hover">{product.presentacion}</td>
+                    <td className="product-hover">{product.categoria}</td>
+                    <td className="product-hover descripcion-scroll">{product.descripcion_producto}</td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>

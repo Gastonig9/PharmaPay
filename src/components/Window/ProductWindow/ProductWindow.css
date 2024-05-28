@@ -1,11 +1,11 @@
 .window-product {
     position: fixed;
-    width: 50%;
+    width: 70%;
     height: auto;
     background-color: #F1F5F2;
     box-shadow: 10px 10px 20px rgba(194, 168, 120, 0.5);
     top: 100px;
-    left: 400px;
+    left: 300px;
     border: 2px solid gray;
     color: #6E633D;
 }

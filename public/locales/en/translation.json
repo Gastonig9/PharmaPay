@@ -1,0 +1,66 @@
+{
+  "ProductWindow": {
+    "title": "Products",
+    "search_placeholder": "Search in catalog",
+    "code": "Code",
+    "product_name": "Product Name",
+    "price": "Price",
+    "laboratory": "Laboratory",
+    "presentation": "Presentation",
+    "category": "Category",
+    "description": "Description"
+  },
+  "CreateProductWindow": {
+    "title": "Add New Product",
+    "create_new": "Create New",
+    "add_existing": "Add Existing"
+  },
+  "ButtonClose": {
+    "close_button": "Close"
+  },
+  "ButtonTitle": {
+    "see_products": "See products",
+    "add_products": "Add products",
+    "close_sales": "Close sales"
+  },
+  "TableProducts": {
+    "title": "Products",
+    "search_placeholder": "Search in catalog",
+    "code": "Code",
+    "product_name": "Product Name",
+    "laboratory": "Laboratory",
+    "price": "Price",
+    "quantity": "Quantity",
+    "discount": "Discount",
+    "payment_type": "Payment Type",
+    "total": "Total",
+    "edit": "Edit",
+    "send_sale": "Charge",
+    "empty_list": "Empty list"
+  },
+  "CreatePForm": {
+    "product_name_placeholder": "Product Name",
+    "product_description_placeholder": "Product Description",
+    "presentation_placeholder": "Select Presentation",
+    "laboratory_placeholder": "Select Laboratory",
+    "stock_placeholder": "Stock",
+    "price_placeholder": "Price",
+    "product_code_placeholder": "Product Code",
+    "category_placeholder": "Select Category",
+    "send_button": "Send"
+  },
+  "UpdatePForm": {
+    "select_product": "Select a product from the catalog",
+    "product_details": "Product Details",
+    "send_button": "Send"
+  },
+  "Alerts": {
+    "creating_product": "Creating product...",
+    "product_created_success": "Product created successfully",
+    "product_obtained_success": "Product obtained successfully",
+    "error_occurred": "An error occurred:",
+    "updating_product": "Updating product...",
+    "new_product_added": "A new product has been added",
+    "no_product_selected": "Select a product"
+  }
+}

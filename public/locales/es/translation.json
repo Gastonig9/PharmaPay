@@ -1,0 +1,66 @@
+{
+  "ProductWindow": {
+    "title": "Productos",
+    "search_placeholder": "Buscar en catálogo",
+    "code": "Código",
+    "product_name": "Nombre del Producto",
+    "price": "Precio",
+    "laboratory": "Laboratorio",
+    "presentation": "Presentación",
+    "category": "Categoría",
+    "description": "Descripción"
+  },
+  "CreateProductWindow": {
+    "title": "Agregar nuevo producto",
+    "create_new": "Crear nuevo",
+    "add_existing": "Agregar existente"
+  },
+  "ButtonClose": {
+    "close_button": "Cerrar"
+  },
+  "ButtonTitle": {
+    "see_products": "Ver productos",
+    "add_products": "Agregar producto",
+    "close_sales": "Cerrar ventas"
+  },
+  "TableProducts": {
+    "title": "Productos",
+    "search_placeholder": "Buscar en catálogo",
+    "code": "Código",
+    "product_name": "Nombre de producto",
+    "laboratory": "Laboratorio",
+    "price": "Precio",
+    "quantity": "Cantidad",
+    "discount": "Desc",
+    "payment_type": "Tipo de pago",
+    "total": "Total",
+    "edit": "Editar",
+    "send_sale": "Cobrar",
+    "empty_list": "Vaciar lista"
+  },
+  "CreatePForm": {
+    "product_name_placeholder": "Nombre del producto",
+    "product_description_placeholder": "Descripción del producto",
+    "presentation_placeholder": "Seleccionar Presentación",
+    "laboratory_placeholder": "Seleccionar Laboratorio",
+    "stock_placeholder": "Stock",
+    "price_placeholder": "Precio",
+    "product_code_placeholder": "Código del producto",
+    "category_placeholder": "Seleccionar Categoría",
+    "send_button": "Enviar"
+  },
+  "UpdatePForm": {
+    "select_product": "Elige un producto del catálogo",
+    "product_details": "Detalles del Producto",
+    "send_button": "Enviar"
+  },
+  "Alerts": {
+    "creating_product": "Creando producto...",
+    "product_created_success": "Producto creado correctamente",
+    "product_obtained_success": "Producto obtenido con éxito",
+    "error_occurred": "Ocurrió un error:",
+    "updating_product": "Actualizando producto...",
+    "new_product_added": "Se agregó un nuevo producto",
+    "no_product_selected": "Seleccione un producto"
+  }
+}
