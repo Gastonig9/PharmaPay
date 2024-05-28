@@ -19,9 +19,9 @@
     "close_button": "Close"
   },
   "ButtonTitle": {
-    "see_products": "See products",
+    "see_products": "View products",
     "add_products": "Add products",
-    "close_sales": "Close sales"
+    "close_sales": "View sales"
   },
   "TableProducts": {
     "title": "Products",

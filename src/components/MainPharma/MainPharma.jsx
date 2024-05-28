@@ -5,6 +5,7 @@ import { TableProducts } from "../Tables/TableProducts/TableProducts";
 import { ProductService } from "../../apiService/ProductService";
 import { CloseSalesWindow, CreateProductWindow, ProductWindow } from "../Window";
 import { useTranslation } from "react-i18next";
+import toast from "react-hot-toast";
 
 const MainPharma = () => {
   const [windowStates, setWindowStates] = useState({
@@ -45,6 +46,10 @@ const MainPharma = () => {
 
   const addProductToSell = useCallback((product) => {
     const verifyProduct = productToSell.some(p => p.id === product.id)
+    if(product.stock <= 0) {
+      toast.error(`Sin stock de ${product.nombre_producto}`)
+      return;
+    }
     if(verifyProduct) return
     setProductToSell((prevState) => [...prevState, product]);
       closeWindow('openProductWindow');

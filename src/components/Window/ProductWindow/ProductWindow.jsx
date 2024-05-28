@@ -68,19 +68,21 @@ export const ProductWindow = ({ products, setProducts, addProductToSell, close }
                 <th>{t('ProductWindow.presentation')}</th>
                 <th>{t('ProductWindow.category')}</th>
                 <th>{t('ProductWindow.description')}</th>
+                <th>Stock</th>
               </tr>
             </thead>
             <tbody>
               {products &&
                 products.map((product) => (
                   <tr key={product.id_producto} onClick={() => addProductToSell(product)}>
-                    <td className="product-hover">{product.id}</td>
-                    <td className="product-hover">{product.nombre_producto}</td>
-                    <td className="product-hover">{product.precio}</td>
-                    <td className="product-hover">{product.laboratorio}</td>
-                    <td className="product-hover">{product.presentacion}</td>
-                    <td className="product-hover">{product.categoria}</td>
-                    <td className="product-hover descripcion-scroll">{product.descripcion_producto}</td>
+                    <td className={`product-hover ${product.stock <= 0 ? "no-stock" : ""}`}>{product.id}</td>
+                    <td className={`product-hover ${product.stock <= 0 ? "no-stock" : ""}`}>{product.nombre_producto}</td>
+                    <td className={`product-hover ${product.stock <= 0 ? "no-stock" : ""}`}>{product.precio}</td>
+                    <td className={`product-hover ${product.stock <= 0 ? "no-stock" : ""}`}>{product.laboratorio}</td>
+                    <td className={`product-hover ${product.stock <= 0 ? "no-stock" : ""}`}>{product.presentacion}</td>
+                    <td className={`product-hover ${product.stock <= 0 ? "no-stock" : ""}`}>{product.categoria}</td>
+                    <td className={`product-hover ${product.stock <= 0 ? "no-stock" : ""}`}>{product.descripcion_producto}</td>
+                    <td className={`product-hover ${product.stock <= 0 ? "no-stock" : ""}`}>{product.stock}</td>
                   </tr>
                 ))}
             </tbody>
