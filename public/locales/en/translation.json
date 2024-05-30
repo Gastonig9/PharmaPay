@@ -8,7 +8,8 @@
     "laboratory": "Laboratory",
     "presentation": "Presentation",
     "category": "Category",
-    "description": "Description"
+    "description": "Description",
+    "no_products_found": "No products found"
   },
   "CreateProductWindow": {
     "title": "Add New Product",

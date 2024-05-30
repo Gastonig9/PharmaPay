@@ -8,9 +8,10 @@ export const EditWindow = ({
   productEdit,
   applyDiscount,
   setSelectedProductId,
+  colorP
 }) => {
   const { t } = useTranslation();
-  const [descEdit, setDescEdit] = useState(1);
+  const [descEdit, setDescEdit] = useState(0);
   const [typeOfPay, settypeOfPay] = useState("efectivo");
   const [quantity, setQuantity] = useState(1);
   const editWindowRef = useRef(null);
@@ -28,12 +29,7 @@ export const EditWindow = ({
   };
 
   const handleApplyDiscount = () => {
-    applyDiscount(
-      productEdit.id,
-      parseInt(descEdit),
-      typeOfPay,
-      parseInt(quantity)
-    );
+    applyDiscount(productEdit.id, parseInt(descEdit), typeOfPay, parseInt(quantity));
   };
 
   const handleClickOutside = (event) => {
@@ -54,7 +50,7 @@ export const EditWindow = ({
 
   return (
     <>
-      <BackgroundTransparent />
+      <BackgroundTransparent colorP={colorP}/>
       <div className="edit-window-contain" ref={editWindowRef}>
         <div className="options-edit">
           <h6>{productEdit.nombre_producto}</h6>

@@ -95,6 +95,7 @@ export const TableProducts = ({ productToSell, setProductToSell, colorP }) => {
           )}
           applyDiscount={applyDiscount}
           setSelectedProductId={setSelectedProductId}
+          colorP={colorP}
         />
       )}
 
