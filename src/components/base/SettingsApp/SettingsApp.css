@@ -78,3 +78,35 @@
     right: 20px;
   }
 }
+
+/* DARK MODE */
+
+.dark-mode-contain {
+  position: fixed;
+  bottom: 270px;
+  left: 40px;
+  width: 87px;
+  height: 110px;
+  background-color: #c2a878;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(100%);
+  opacity: 0;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  cursor: pointer;
+  z-index: 9980;
+}
+
+.dark-mode-contain.show-dMode {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.dark-mode-contain i {
+  font-size: 39px;
+  color: #745d34;
+}

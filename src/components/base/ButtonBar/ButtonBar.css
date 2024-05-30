@@ -5,3 +5,14 @@
     padding: 10px 30px;
     box-shadow: 10px 10px 20px rgba(194, 168, 120, 0.5); 
 }
+
+/* DARK MODE */
+
+.button-action-dark {
+    background-color: #14213D;
+    color: #FFFFFF;
+    border-bottom: 2px solid #314064;
+    border-right: 2px solid #314064;
+    padding: 10px 30px;
+    box-shadow: 10px 10px 20px #070c16; 
+}

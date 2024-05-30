@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useTranslation } from "react-i18next";
 import { useRef, useState } from "react";
 import SimpleReactValidator from "simple-react-validator";
@@ -9,7 +10,7 @@ import "./CreatePForm.css";
 import { ProductService } from "../../../apiService/ProductService";
 import toast from "react-hot-toast";
 
-export const CreatePForm = () => {
+export const CreatePForm = ({ close }) => {
   const { t } = useTranslation(); // Agregamos la función de traducción
   const validator = useRef(new SimpleReactValidator());
   const [createProductData, setCreateProductData] = useState({
@@ -39,16 +40,7 @@ export const CreatePForm = () => {
         success: t("Alerts.product_created_success"),
         error: (err) => `${t("Alerts.error_occurred")} ${err}`,
       });
-      setCreateProductData({
-        nombre_producto: "",
-        descripcion_producto: "",
-        presentacion: "",
-        laboratorio: "",
-        stock: null,
-        precio: null,
-        codigo_producto: null,
-        categoria: "",
-      });
+      close()
     } else {
       validator.current.getErrorMessages();
       validator.current.showMessages();

@@ -5,7 +5,7 @@
     background-color: #F1F5F2;
     box-shadow: 10px 10px 20px rgba(194, 168, 120, 0.5);
     top: 100px;
-    left: 300px;
+    left: 250px;
     border: 2px solid gray;
     color: #6E633D;
 }
@@ -28,6 +28,43 @@
 }
 
 .product-hover:hover{
+    cursor: pointer;
+    background-color: rgb(138, 137, 137) !important;
+}
+
+
+/* DARK MODE */
+
+.window-product-dark {
+    position: fixed;
+    width: 70%;
+    height: auto;
+    background-color: #14213D;
+    box-shadow: 10px 10px 20px #070c16;;
+    top: 100px;
+    left: 250px;
+    border: 2px solid gray;
+    color: #FFFFFF;
+}
+
+.window-product-dark .scroll-product {
+    width: 1100px;
+    height: 400px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+
+.window-product-dark .scroll-product table tbody tr .no-stock {
+    background-color: #e6514c;
+    color: #f1f5f2;
+}
+
+.window-product-dark .product-hover{
+    padding: 10px 20px;
+    font-size: 17px;
+}
+
+.window-product-dark .product-hover:hover{
     cursor: pointer;
     background-color: rgb(138, 137, 137) !important;
 }

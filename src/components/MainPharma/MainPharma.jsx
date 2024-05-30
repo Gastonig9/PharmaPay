@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect, useCallback } from "react";
 import "./MainPharma.css";
 import { ButtonBar } from "../base";
@@ -7,7 +8,7 @@ import { CloseSalesWindow, CreateProductWindow, ProductWindow } from "../Window"
 import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
 
-const MainPharma = () => {
+const MainPharma = ({ colorP }) => {
   const [windowStates, setWindowStates] = useState({
     openProductWindow: false,
     openCreateProductWindow: false,
@@ -47,7 +48,7 @@ const MainPharma = () => {
   const addProductToSell = useCallback((product) => {
     const verifyProduct = productToSell.some(p => p.id === product.id)
     if(product.stock <= 0) {
-      toast.error(`Sin stock de ${product.nombre_producto}`)
+      toast.error(t("Alerts.no_stock"))
       return;
     }
     if(verifyProduct) return
@@ -63,25 +64,27 @@ const MainPharma = () => {
           addProductToSell={addProductToSell}
           setProducts={setProducts}
           close={() => closeWindow('openProductWindow')}
+          colorP={colorP}
         />
       )}
 
       {windowStates.openCreateProductWindow && (
-        <CreateProductWindow products={products} close={() => closeWindow('openCreateProductWindow')} />
+        <CreateProductWindow colorP={colorP} products={products} close={() => closeWindow('openCreateProductWindow')} />
       )}
 
       {windowStates.openCloseSalesWindow && (
-        <CloseSalesWindow close={() => closeWindow('openCloseSalesWindow')} />
+        <CloseSalesWindow colorP={colorP} close={() => closeWindow('openCloseSalesWindow')} />
       )}
 
       <div className="w-100 d-flex justify-content-center text-light">
-        <ButtonBar buttonTitle={t('ButtonTitle.see_products')} open={() => toggleWindowState('openProductWindow')} />
-        <ButtonBar buttonTitle={t('ButtonTitle.add_products')} open={() => toggleWindowState('openCreateProductWindow')} />
-        <ButtonBar buttonTitle={t('ButtonTitle.close_sales')} open={() => toggleWindowState('openCloseSalesWindow')} />
+        <ButtonBar buttonTitle={t('ButtonTitle.see_products')} colorP={colorP} open={() => toggleWindowState('openProductWindow')} />
+        <ButtonBar buttonTitle={t('ButtonTitle.add_products')} colorP={colorP} open={() => toggleWindowState('openCreateProductWindow')} />
+        <ButtonBar buttonTitle={t('ButtonTitle.close_sales')} colorP={colorP} open={() => toggleWindowState('openCloseSalesWindow')} />
       </div>
 
       <div className="sale-contain">
         <TableProducts
+          colorP={colorP}
           productToSell={productToSell}
           setProductToSell={setProductToSell}
         />

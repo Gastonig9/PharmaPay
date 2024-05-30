@@ -5,7 +5,7 @@ import { ProductService } from "../../../../apiService/ProductService";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 
-export const UpdatePForm = ({ products }) => {
+export const UpdatePForm = ({ products, close }) => {
   const [productToUpdate, setProductToUpdate] = useState({});
   const { t } = useTranslation()
 
@@ -36,6 +36,7 @@ export const UpdatePForm = ({ products }) => {
       success: `Se agregó un nuevo ${productToUpdate.nombre_producto}`,
       error: (err) => `Ocurrió un error: ${err}`,
     });
+    close()
   };
 
   return (

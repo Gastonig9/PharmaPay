@@ -6,7 +6,7 @@ import { ButtonClose, BackgroundTransparent } from "../../base";
 import "./CloseSalesWindow.css";
 import { useTranslation } from "react-i18next";
 
-export const CloseSalesWindow = ({ close }) => {
+export const CloseSalesWindow = ({ close, colorP }) => {
   const { t } = useTranslation()
   const [closeSalesData, setCloseSalesData] = useState({
     fromDate: "",
@@ -59,7 +59,7 @@ export const CloseSalesWindow = ({ close }) => {
 
   return (
     <>
-      <BackgroundTransparent />
+      <BackgroundTransparent colorP={colorP} />
       <div className="window-close-sale d-flex flex-column gap-4 p-3">
         <h1>{t('CloseSalesWindow.title')}</h1>
         <div className="close-sales-info">

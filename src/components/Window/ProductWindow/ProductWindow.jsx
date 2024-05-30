@@ -5,7 +5,7 @@ import { ProductService } from "../../../apiService/ProductService";
 import { BackgroundTransparent, ButtonClose } from "../../base";
 import "./ProductWindow.css";
 
-export const ProductWindow = ({ products, setProducts, addProductToSell, close }) => {
+export const ProductWindow = ({ products, setProducts, addProductToSell, close, colorP }) => {
   const [key, setKey] = useState("");
   const { t } = useTranslation();
 
@@ -39,8 +39,8 @@ export const ProductWindow = ({ products, setProducts, addProductToSell, close }
 
   return (
     <>
-      <BackgroundTransparent />
-      <div className="window-product d-flex flex-column gap-4 p-3">
+      <BackgroundTransparent colorP={colorP} />
+      <div className={colorP.colorMode ? 'window-product d-flex flex-column gap-4 p-3' : 'window-product-dark d-flex flex-column gap-4 p-3'}>
         <h1>{t('ProductWindow.title')}</h1>
         <div className="input-group mb-3">
           <input

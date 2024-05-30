@@ -61,7 +61,9 @@
     "error_occurred": "An error occurred:",
     "updating_product": "Updating product...",
     "new_product_added": "A new product has been added",
-    "no_product_selected": "Select a product"
+    "no_product_selected": "Select a product",
+    "no_stock": "Out of stock of this product",
+    "no_stock_quantity": "There are one or more products without sufficient stock in relation to the quantity entered"
   },
   "CloseSalesWindow": {
     "title": "Closing sales",

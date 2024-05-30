@@ -7,7 +7,7 @@ import { Ticket } from "../../base/Ticket/Ticket";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 
-export const TableProducts = ({ productToSell, setProductToSell }) => {
+export const TableProducts = ({ productToSell, setProductToSell, colorP }) => {
   const { t } = useTranslation();
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [ticket, setticket] = useState({});
@@ -33,7 +33,7 @@ export const TableProducts = ({ productToSell, setProductToSell }) => {
 
     setProductToSell(updatedProducts);
     setSelectedProductId(null);
-  };
+  };   
 
   const sendDataSaleInfo = async () => {
     let finalDiscount = 0;
@@ -58,7 +58,7 @@ export const TableProducts = ({ productToSell, setProductToSell }) => {
     });
 
     if(insufficientStock) {
-      toast.error("Hay uno o mas productos sin stock suficiente en relacion a la cantidad ingresada")
+      toast.error(t("Alerts.no_stock_quantity"))
       return;
     }
 
@@ -66,6 +66,7 @@ export const TableProducts = ({ productToSell, setProductToSell }) => {
       cantidad: finalQuantity,
       tipo_de_pago: finalPayment,
       Ticket: productToSell,
+      lista_de_productos: productToSell,
       descuento: finalDiscount,
       precio_final: finalPrice,
       horario_de_venta: new Date(),
@@ -109,7 +110,7 @@ export const TableProducts = ({ productToSell, setProductToSell }) => {
         />
       )}
 
-      <div className="table-contain">
+      <div className={colorP.colorMode ? `table-contain` : 'table-contain-dark'}>
         <table className="table">
           <thead>
             <tr>
