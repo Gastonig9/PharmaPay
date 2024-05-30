@@ -12,41 +12,98 @@
 }
 
 .window-close-sale .close-sales-info {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
-.window-close-sale .close-sales-info .inputs-date, .inputs-hour {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+.window-close-sale .close-sales-info .inputs-date,
+.inputs-hour {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 .window-close-sale .close-sales-info .inputs-date input {
-    width: 60%;
-    height: 40px;
-    padding: 15px;
-    font-size: 17px;
+  width: 60%;
+  height: 40px;
+  padding: 15px;
+  font-size: 17px;
 }
 
 .window-close-sale .close-sales-info .inputs-hour input {
-    width: 40%;
-    height: 40px;
-    padding: 15px;
-    font-size: 17px;
+  width: 40%;
+  height: 40px;
+  padding: 15px;
+  font-size: 17px;
 }
 
 .window-close-sale .show-sales {
-    width: 100%;
-    display: flex;
-    justify-content: end;
+  width: 100%;
+  display: flex;
+  justify-content: end;
 }
 
 .window-close-sale .show-sales button {
-    width: 10%;
-    background-color: #c2a878;
-    color: #f1f5f2;
+  width: 10%;
+  background-color: #c2a878;
+  color: #f1f5f2;
+}
+
+/* DARK MODE */
+
+.window-close-sale-dark {
+  position: fixed;
+  width: 100%;
+  height: 650px;
+  background-color: #314064;
+  box-shadow: 10px 10px 20px rgba(194, 168, 120, 0.5);
+  top: 100px;
+  left: 0;
+  border: 2px solid gray;
+  color: #ffffff;
+  overflow-y: scroll;
+}
+
+.window-close-sale-dark .close-sales-info {
+  display: flex;
+  justify-content: space-around;
+}
+
+.window-close-sale-dark .close-sales-info .inputs-date,
+.inputs-hour {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.window-close-sale-dark .close-sales-info .inputs-date input {
+  width: 60%;
+  height: 40px;
+  padding: 15px;
+  font-size: 17px;
+}
+
+.window-close-sale-dark .close-sales-info .inputs-hour input {
+  width: 40%;
+  height: 40px;
+  padding: 15px;
+  font-size: 17px;
+}
+
+.window-close-sale-dark .show-sales {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+.window-close-sale-dark .show-sales button {
+  width: 10%;
+  background-color: #000000;
+  color: #ffffff;
 }
