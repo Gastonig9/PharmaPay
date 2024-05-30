@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import toast from "react-hot-toast";
 import { SaleService } from "../../../apiService/SaleService";
-import { formatDate, parseDate } from "../../../helpers/helpers";
 import "./TableSales.css";
 import { useTranslation } from "react-i18next";
 
