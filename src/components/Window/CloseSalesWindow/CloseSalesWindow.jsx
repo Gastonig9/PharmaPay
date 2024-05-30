@@ -60,7 +60,7 @@ export const CloseSalesWindow = ({ close, colorP }) => {
   return (
     <>
       <BackgroundTransparent colorP={colorP} />
-      <div className="window-close-sale d-flex flex-column gap-4 p-3">
+      <div className={colorP.colorMode ? 'window-close-sale d-flex flex-column gap-4 p-3' : 'window-close-sale-dark d-flex flex-column gap-4 p-3'}>
         <h1>{t('CloseSalesWindow.title')}</h1>
         <div className="close-sales-info">
           <div className="inputs-date">

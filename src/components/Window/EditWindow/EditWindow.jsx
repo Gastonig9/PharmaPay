@@ -51,7 +51,7 @@ export const EditWindow = ({
   return (
     <>
       <BackgroundTransparent colorP={colorP}/>
-      <div className="edit-window-contain" ref={editWindowRef}>
+      <div className={colorP.colorMode ? 'edit-window-contain' : 'edit-window-contain-dark'} ref={editWindowRef}>
         <div className="options-edit">
           <h6>{productEdit.nombre_producto}</h6>
           <div className="d-flex gap-3 align-items-center">
