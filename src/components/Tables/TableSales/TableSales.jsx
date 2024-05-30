@@ -1,13 +1,17 @@
 /* eslint-disable react/prop-types */
 import toast from "react-hot-toast";
 import { SaleService } from "../../../apiService/SaleService";
+import { formatDate, parseDate } from "../../../helpers/helpers";
 import "./TableSales.css";
+import { useTranslation } from "react-i18next";
 
-export const TableSales = ({ salesToClose, errorMessage }) => {
+export const TableSales = ({ salesToClose, errorMessage, close }) => {
+  const { t } = useTranslation()
   const sendCloseDate = async () => {
     try {
-      const sendSales = await new SaleService().createCloseSale(salesToClose)
-      console.log(sendSales)
+      await new SaleService().createCloseSale(salesToClose)
+      toast.success(t("Alerts.sale_created_success"))
+      close()
     } catch (error) {
        toast.error(error)
     }
@@ -28,6 +32,7 @@ export const TableSales = ({ salesToClose, errorMessage }) => {
             <th>Codigo de venta</th>
             <th>Cantidad</th>
             <th>Desc</th>
+            <th>Fecha</th>
             <th>Tipo de pago</th>
             <th>Total</th>
           </tr>
@@ -38,6 +43,7 @@ export const TableSales = ({ salesToClose, errorMessage }) => {
               <td scope="row">{sale.id}</td>
               <td>{sale.cantidad}</td>
               <td>{sale.descuento}%</td>
+              <td>{sale.horario_de_venta}</td>
               <td>{sale.tipo_de_pago || "efectivo"}</td>
               <td>${sale.precio_final}</td>
             </tr>

@@ -59,6 +59,8 @@
     "creating_product": "Creating product...",
     "product_created_success": "Product created successfully",
     "product_obtained_success": "Product obtained successfully",
+    "creating_sale":"Closing sales...",
+    "sale_created_success": "Sales closed successfully",
     "error_occurred": "An error occurred:",
     "updating_product": "Updating product...",
     "new_product_added": "A new product has been added",

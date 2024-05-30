@@ -59,6 +59,8 @@
     "creating_product": "Creando producto...",
     "product_created_success": "Producto creado correctamente",
     "product_obtained_success": "Producto obtenido con éxito",
+    "creating_sale":"Cerrando ventas...",
+    "sale_created_success": "Ventas cerradas con exito",
     "error_occurred": "Ocurrió un error:",
     "updating_product": "Actualizando producto...",
     "new_product_added": "Se agregó un nuevo producto",
