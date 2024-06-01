@@ -2,9 +2,14 @@
 import { useState, useEffect, useCallback } from "react";
 import "./MainPharma.css";
 import { ButtonBar } from "../base";
+import { shortcutEmptyProductList, shortcutWindow } from "../../helpers/helpers";
 import { TableProducts } from "../Tables/TableProducts/TableProducts";
 import { ProductService } from "../../apiService/ProductService";
-import { CloseSalesWindow, CreateProductWindow, ProductWindow } from "../Window";
+import {
+  CloseSalesWindow,
+  CreateProductWindow,
+  ProductWindow,
+} from "../Window";
 import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
 
@@ -31,6 +36,20 @@ const MainPharma = ({ colorP }) => {
     fetchProducts();
   }, []);
 
+  useEffect(() => {
+    const handleShortcuts = (event) => {
+      shortcutWindow(event, setWindowStates);
+      shortcutEmptyProductList(event, setProductToSell);
+    };
+
+    document.addEventListener('keydown', handleShortcuts);
+
+    return () => {
+      document.removeEventListener('keydown', handleShortcuts);
+    };
+  }, []);
+  
+
   const toggleWindowState = (window) => {
     setWindowStates((prevState) => ({
       ...prevState,
@@ -45,16 +64,19 @@ const MainPharma = ({ colorP }) => {
     }));
   };
 
-  const addProductToSell = useCallback((product) => {
-    const verifyProduct = productToSell.some(p => p.id === product.id)
-    if(product.stock <= 0) {
-      toast.error(t("Alerts.no_stock"))
-      return;
-    }
-    if(verifyProduct) return
-    setProductToSell((prevState) => [...prevState, product]);
-      closeWindow('openProductWindow');
-  }, [productToSell]);
+  const addProductToSell = useCallback(
+    (product) => {
+      const verifyProduct = productToSell.some((p) => p.id === product.id);
+      if (product.stock <= 0) {
+        toast.error(t("Alerts.no_stock"));
+        return;
+      }
+      if (verifyProduct) return;
+      setProductToSell((prevState) => [...prevState, product]);
+      closeWindow("openProductWindow");
+    },
+    [productToSell]
+  );
 
   return (
     <div className="pharma-contain">
@@ -63,23 +85,42 @@ const MainPharma = ({ colorP }) => {
           products={products}
           addProductToSell={addProductToSell}
           setProducts={setProducts}
-          close={() => closeWindow('openProductWindow')}
+          close={() => closeWindow("openProductWindow")}
           colorP={colorP}
         />
       )}
 
       {windowStates.openCreateProductWindow && (
-        <CreateProductWindow colorP={colorP} products={products} close={() => closeWindow('openCreateProductWindow')} />
+        <CreateProductWindow
+          colorP={colorP}
+          products={products}
+          close={() => closeWindow("openCreateProductWindow")}
+        />
       )}
 
       {windowStates.openCloseSalesWindow && (
-        <CloseSalesWindow colorP={colorP} close={() => closeWindow('openCloseSalesWindow')} />
+        <CloseSalesWindow
+          colorP={colorP}
+          close={() => closeWindow("openCloseSalesWindow")}
+        />
       )}
 
       <div className="w-100 d-flex justify-content-center text-light">
-        <ButtonBar buttonTitle={t('ButtonTitle.see_products')} colorP={colorP} open={() => toggleWindowState('openProductWindow')} />
-        <ButtonBar buttonTitle={t('ButtonTitle.add_products')} colorP={colorP} open={() => toggleWindowState('openCreateProductWindow')} />
-        <ButtonBar buttonTitle={t('ButtonTitle.close_sales')} colorP={colorP} open={() => toggleWindowState('openCloseSalesWindow')} />
+        <ButtonBar
+          buttonTitle={t("ButtonTitle.see_products")}
+          colorP={colorP}
+          open={() => toggleWindowState("openProductWindow")}
+        />
+        <ButtonBar
+          buttonTitle={t("ButtonTitle.add_products")}
+          colorP={colorP}
+          open={() => toggleWindowState("openCreateProductWindow")}
+        />
+        <ButtonBar
+          buttonTitle={t("ButtonTitle.close_sales")}
+          colorP={colorP}
+          open={() => toggleWindowState("openCloseSalesWindow")}
+        />
       </div>
 
       <div className="sale-contain">
